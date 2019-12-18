@@ -1,0 +1,50 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "d41a8ead-9597-4f96-a8c3-be804184b1a8",
+    "name": "UpdateAndroidVersionGradle",
+    "friendlyName": "Update gradle version for Android",
+    "description": "Learn more about this task by looking to the [Github repository]()",
+    "helpMarkDown": "",
+    "category": "Build",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Damien Aicheh",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "inputs": [
+        {
+            "name": "buildGradlePath",
+            "type": "string",
+            "label": "build.gradle path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Relative path for the build.gradle file."
+        },
+        {
+            "name": "versionCode",
+            "type": "string",
+            "label": "Version Code",
+            "defaultValue": "$(NUMBER_OF_COMMITS)",
+            "required": false,
+            "helpMarkDown": "You can define it manually or automatically if you specify the ExtractVersionFromTag before this task. Default is: $(NUMBER_OF_COMMITS)"
+        },
+        {
+            "name": "versionName",
+            "type": "string",
+            "label": "Version Name",
+            "defaultValue": "$(MAJOR).$(MINOR).$(PATCH)",
+            "required": false,
+            "helpMarkDown": "You can define it manually or automatically if you specify the ExtractVersionFromTag before this task. Default is: $(MAJOR).$(MINOR).$(PATCH)"
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "update-android-version-gradle.js"
+        }
+    }
+}

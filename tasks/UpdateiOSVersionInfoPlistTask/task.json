@@ -1,0 +1,50 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "238f39b4-d9fc-4fed-be87-1e48e5fb2b9a",
+    "name": "UpdateiOSVersionInfoPlist",
+    "friendlyName": "Update iOS version Info.plist",
+    "description": "Learn more about this task by looking to the [Github repository]()",
+    "helpMarkDown": "",
+    "category": "Build",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Damien Aicheh",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "inputs": [
+        {
+            "name": "infoPlistPath",
+            "type": "string",
+            "label": "Info.plist path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Relative path for the Info.plist file."
+        },
+        {
+            "name": "bundleShortVersionString",
+            "type": "string",
+            "label": "CF Bundle Short Version String",
+            "defaultValue": "$(MAJOR).$(MINOR).$(PATCH)",
+            "required": false,
+            "helpMarkDown": "You can define it manually or automatically if you specify the ExtractVersionFromTag before this task. Default is: $(MAJOR).$(MINOR).$(PATCH)"
+        },
+        {
+            "name": "bundleVersion",
+            "type": "string",
+            "label": "CF Bundle Version",
+            "defaultValue": "$(NUMBER_OF_COMMITS)",
+            "required": false,
+            "helpMarkDown": "You can define it manually or automatically if you specify the ExtractVersionFromTag before this task. Default is: $(NUMBER_OF_COMMITS)"
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "update-ios-version-info-plist.js"
+        }
+    }
+}

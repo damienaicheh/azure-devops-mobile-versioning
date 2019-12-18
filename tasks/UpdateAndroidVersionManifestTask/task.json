@@ -1,0 +1,50 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "480c7ca6-ce77-4c58-80ad-e666911c8b09",
+    "name": "UpdateAndroidVersionManifest",
+    "friendlyName": "Update the Android Manifest version",
+    "description": "Learn more about this task by looking to the [Github repository]()",
+    "helpMarkDown": "",
+    "category": "Build",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Damien Aicheh",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "inputs": [
+        {
+            "name": "androidManifestPath",
+            "type": "string",
+            "label": "AndroidManifest.xml path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Relative path for the AndroidManifest.xml file."
+        },
+        {
+            "name": "versionCode",
+            "type": "string",
+            "label": "Version Code",
+            "defaultValue": "$(NUMBER_OF_COMMITS)",
+            "required": false,
+            "helpMarkDown": "You can define it manually or automatically if you specify the ExtractVersionFromTag before this task. Default is: $(NUMBER_OF_COMMITS)"
+        },
+        {
+            "name": "versionName",
+            "type": "string",
+            "label": "Version Name",
+            "defaultValue": "$(MAJOR).$(MINOR).$(PATCH)",
+            "required": false,
+            "helpMarkDown": "You can define it manually or automatically if you specify the ExtractVersionFromTag before this task. Default is: $(MAJOR).$(MINOR).$(PATCH)"
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "update-android-version-manifest.js"
+        }
+    }
+}

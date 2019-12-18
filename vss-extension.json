@@ -1,0 +1,98 @@
+{
+    "manifestVersion": 1,
+    "id": "mobile-versioning-task",
+    "name": "Mobile Versioning",
+    "version": "1.0.2",
+    "publisher": "damienaicheh",
+    "public": true,
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "description": "Manage your mobile application versions with Azure DevOps",
+    "icons": {
+        "default": "icon.png"
+    },
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "tags": [
+        "mobile",
+        "ios",
+        "android"
+    ],
+    "content": {
+        "details": {
+            "path": "OVERVIEW.md"
+        },
+        "license": {
+            "path": "LICENSE.md"
+        }
+    },
+    "links": {
+        "support": {
+            "uri": "https://github.com/damienaicheh/azure-devops-mobile-versioning/issues"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/damienaicheh/azure-devops-mobile-versioning"
+    },
+    "files": [
+        {
+            "path": "tasks/ExtractVersionFromTagTask"
+        },
+        {
+            "path": "tasks/UpdateAndroidVersionGradleTask"
+        },
+        {
+            "path": "tasks/UpdateAndroidVersionManifestTask"
+        },
+        {
+            "path": "tasks/UpdateiOSVersionInfoPlistTask"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "extract-version-from-tag-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/ExtractVersionFromTagTask"
+            }
+        },
+        {
+            "id": "update-android-version-gradle-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/UpdateAndroidVersionGradleTask"
+            }
+        },
+        {
+            "id": "update-android-version-manifest-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/UpdateAndroidVersionManifestTask"
+            }
+        },
+        {
+            "id": "update-iOS-version-info-plist-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/UpdateiOSVersionInfoPlistTask"
+            }
+        }
+    ]
+}

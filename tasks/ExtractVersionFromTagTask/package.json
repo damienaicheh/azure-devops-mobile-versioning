@@ -1,0 +1,19 @@
+{
+  "name": "extractversionfromtagtask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "extract-version-from-tag.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "azure-pipelines-task-lib": "^2.9.3",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "@types/q": "^1.5.2"
+  }
+}

@@ -1,0 +1,63 @@
+trigger: none
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+
+- task: ExtractVersionFromTag@1
+  inputs:
+    projectFolderPath: '$(Build.SourcesDirectory)'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      echo Variables :
+      echo $(MAJOR) $(MINOR) $(PATCH)
+      echo $(NUMBER_OF_COMMITS)
+
+- task: UpdateiOSVersionInfoPlist@1
+  inputs:
+    infoPlistPath: 'iOSVersionProject/iOSVersionProject/Info.plist'
+    bundleShortVersionString: '$(MAJOR).$(MINOR).$(PATCH)'
+    bundleVersion: '2'
+
+- task: UpdateiOSVersionInfoPlist@1
+  inputs:
+    infoPlistPath: 'XamarinFormsVersionProject/XamarinFormsVersionProject.iOS/Info.plist'
+
+- task: UpdateAndroidVersionManifest@1
+  inputs:
+    androidManifestPath: 'AndroidManifestVersionProject/app/src/main/AndroidManifest.xml'
+
+- task: UpdateAndroidVersionManifest@1
+  inputs:
+    androidManifestPath: 'AndroidManifestVersionProject/app/src/main/AndroidManifest-1.xml'
+
+- task: UpdateAndroidVersionManifest@1
+  inputs:
+    androidManifestPath: 'AndroidManifestVersionProject/app/src/main/AndroidManifest-2.xml'
+
+- task: UpdateAndroidVersionGradle@1
+  inputs:
+    buildGradlePath: 'AndroidGradleVersionProject/app/build.gradle'
+
+- task: UpdateAndroidVersionManifest@1
+  inputs:
+    androidManifestPath: 'XamarinFormsVersionProject/XamarinFormsVersionProject.Android/Properties/AndroidManifest.xml'
+    versionCode: '2'
+    versionName: '1.2.3'
+
+- task: CopyFiles@2
+  inputs:
+    contents: '**'
+    targetFolder: '$(build.artifactStagingDirectory)'
+    overWrite: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactStagingDirectory)' 
+    artifactName: 'drop' 
+    publishLocation: 'Container'
