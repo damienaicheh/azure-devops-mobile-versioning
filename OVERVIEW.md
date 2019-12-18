@@ -2,7 +2,7 @@
 
 ## Quick overview
 
-The tasks available in this extension ares:
+The tasks available in this extension are:
 
 - ExtractVersionFromTag
 - UpdateiOSVersionInfoPlist
@@ -11,7 +11,7 @@ The tasks available in this extension ares:
 
 Check the [Github](https://github.com/damienaicheh/azure-devops-mobile-versioning) repository for more informations!
 
-## Usage
+## Basic usage
 
 Dynamically get the version from the Git tag:
 
@@ -20,6 +20,8 @@ Dynamically get the version from the Git tag:
   inputs:
     projectFolderPath: '$(Build.SourcesDirectory)' # Optional. Default is: $(Build.SourcesDirectory)
 ```
+
+Then depending on your need add one of these following tasks:
 
 For iOS to update the `Info.plist`:
 
