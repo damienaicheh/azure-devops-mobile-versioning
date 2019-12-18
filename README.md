@@ -1,4 +1,29 @@
+![Schema](./icon.png)
+
 # Mobile Versioning for Azure DevOps
+
+## Install
+
+Available on [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=DamienAicheh.mobile-versioning-task&ssr=false#overview)
+
+## Features
+
+Here is the list of tasks available in this extension:
+
+- ExtractVersionFromTag
+- UpdateiOSVersionInfoPlist
+- UpdateAndroidVersionManifest
+- UpdateAndroidVersionGradle
+
+## Tutorial
+You will find a complete tutorial here:
+
+##### English version :
+[https://damienaicheh.github.io/azure/devops/2019/12/19/manage-your-application-version-automatically-using-git-and-azure-devops-en](https://damienaicheh.github.io/azure/devops/2019/12/19/manage-your-application-version-automatically-using-git-and-azure-devops-en)
+
+##### French version :
+[https://damienaicheh.github.io/azure/devops/2019/12/19/manage-your-application-version-automatically-using-git-and-azure-devops-fr](https://damienaicheh.github.io/azure/devops/2019/12/19/manage-your-application-version-automatically-using-git-and-azure-devops-fr)
+
 
 ## Example of variable export for developing the project on a Mac:
 
