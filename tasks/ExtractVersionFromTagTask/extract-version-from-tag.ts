@@ -4,6 +4,7 @@ import fs = require('fs');
 const MAJOR: string = 'MAJOR';
 const MINOR: string = 'MINOR';
 const PATCH: string = 'PATCH';
+const PRE_RELEASE: string = 'PRE_RELEASE';
 const NUMBER_OF_COMMITS: string = 'NUMBER_OF_COMMITS';
 
 async function run() {
@@ -49,9 +50,15 @@ async function run() {
         var versionsIndicator = tag.split('.');
         task.debug(versionsIndicator.toString());
 
+        if (versionsIndicator[2].includes('-')) {
+            const preSplit = versionsIndicator[2].split('-');
+            versionsIndicator[2] = preSplit[0];
+            setVariableOrDefault(PRE_RELEASE, preSplit[1]);
+        }
+
         setVariableOrDefault(MAJOR, versionsIndicator[0]);
         setVariableOrDefault(MINOR, versionsIndicator[1]);
-        setVariableOrDefault(PATCH, versionsIndicator[2])
+        setVariableOrDefault(PATCH, versionsIndicator[2]);
 
         task.debug('Get the number of commit until this tag');
 
@@ -66,11 +73,13 @@ async function run() {
         task.debug(`Major:` + task.getVariable(MAJOR));
         task.debug(`Minor:` + task.getVariable(MINOR));
         task.debug(`Patch:` + task.getVariable(PATCH));
+        if (task.getVariable(PRE_RELEASE)) {
+            task.debug(`Pre Release:` + task.getVariable(PRE_RELEASE));
+        }
         task.debug(`Number of commits:` + task.getVariable(NUMBER_OF_COMMITS));
 
         task.setResult(task.TaskResult.Succeeded, "Extract version from tag succeeded");
-    }
-    catch (err) {
+    } catch (err) {
         task.setResult(task.TaskResult.Failed, err.message);
     }
 }
