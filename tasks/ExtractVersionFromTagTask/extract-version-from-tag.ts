@@ -52,8 +52,12 @@ async function run() {
 
         if (versionsIndicator[2].includes('-')) {
             const preSplit = versionsIndicator[2].split('-');
+            // Replacing PATCH split with pre release tag split
             versionsIndicator[2] = preSplit[0];
             setVariableOrDefault(PRE_RELEASE, preSplit[1]);
+        } else {
+            // setting empty string a PRE_RELEASE
+            task.setVariable(PRE_RELEASE, '');
         }
 
         setVariableOrDefault(MAJOR, versionsIndicator[0]);
