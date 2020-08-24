@@ -21,6 +21,12 @@ Dynamically get the version from the Git tag:
     projectFolderPath: '$(Build.SourcesDirectory)' # Optional. Default is: $(Build.SourcesDirectory)
 ```
 
+You will then have access to 4 variables for the following tasks:
+- MAJOR
+- MINOR
+- PATCH
+- PRE_RELEASE
+
 Then depending on your need add one of these following tasks:
 
 For iOS to update the `Info.plist`:
@@ -29,7 +35,7 @@ For iOS to update the `Info.plist`:
 - task: UpdateiOSVersionInfoPlist@1
   inputs:
     infoPlistPath: 'your_project/Info.plist'
-    bundleShortVersionString: '$(MAJOR).$(MINOR).$(PATCH)' # Optional. Default is: $(MAJOR).$(MINOR).$(PATCH)
+    bundleShortVersionString: '$(MAJOR).$(MINOR).$(PATCH)-$(PRE_RELEASE)' # Optional. Default is: $(MAJOR).$(MINOR).$(PATCH)
     bundleVersion: '$(NUMBER_OF_COMMITS)' # Optional. Default is: $(NUMBER_OF_COMMITS)
 ```
 
@@ -41,7 +47,7 @@ If you need to update the `AndroidManifest.xml`:
 - task: UpdateAndroidVersionManifest@1
   inputs:
     androidManifestPath: 'your_project/AndroidManifest.xml'
-    versionName: '$(MAJOR).$(MINOR).$(PATCH)' # Optional. Default is: $(MAJOR).$(MINOR).$(PATCH)
+    versionName: '$(MAJOR).$(MINOR).$(PATCH)-$(PRE_RELEASE)' # Optional. Default is: $(MAJOR).$(MINOR).$(PATCH)
     versionCode: '$(NUMBER_OF_COMMITS)' # Optional. Default is: $(NUMBER_OF_COMMITS)
 ```
 
@@ -51,6 +57,6 @@ If you need to update the `build.gradle` inside the `app` folder:
 - task: UpdateAndroidVersionGradle@1
   inputs:
     buildGradlePath: 'your_project/app/build.gradle'
-    versionName: '$(MAJOR).$(MINOR).$(PATCH)' # Optional. Default is: $(MAJOR).$(MINOR).$(PATCH)
+    versionName: '$(MAJOR).$(MINOR).$(PATCH)-$(PRE_RELEASE)' # Optional. Default is: $(MAJOR).$(MINOR).$(PATCH)
     versionCode: '$(NUMBER_OF_COMMITS)' # Optional. Default is: $(NUMBER_OF_COMMITS)
 ```
