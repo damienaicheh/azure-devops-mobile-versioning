@@ -56,7 +56,7 @@ function run() {
                 task.debug("Moving to " + projectFolderPath);
                 task.cd(projectFolderPath);
                 git = task.which('git', true);
-                args = ["describe", "--abbrev=0"];
+                args = ["describe", "--tags", "--abbrev=0"];
                 tagResult = task.execSync(git, args);
                 if (tagResult.code !== 0) {
                     if (tagResult.error != null) {
