@@ -20,7 +20,7 @@ async function run() {
         task.cd(projectFolderPath);
 
         let git: string = task.which('git', true);
-        var args = ["describe", "--abbrev=0"];
+        var args = ["describe", "--tags", "--abbrev=0"];
 
         let tagResult = task.execSync(git, args);
 
