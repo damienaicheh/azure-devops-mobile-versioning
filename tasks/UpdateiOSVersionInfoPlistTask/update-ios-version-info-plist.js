@@ -17,7 +17,7 @@ function run() {
         try {
             var infoPlistPath = task.getPathInput('infoPlistPath');
             if (!fs.existsSync(infoPlistPath)) {
-                task.error(`The file path does not exist: ${infoPlistPath}`);
+                task.error(`The file path for the info.plist does not exist or is not found: ${infoPlistPath}`);
                 process.exit(1);
             }
             task.debug(`Running task with ${infoPlistPath}`);

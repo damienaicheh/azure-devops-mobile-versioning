@@ -16,7 +16,7 @@ function run() {
         try {
             var buildGradlePath = task.getPathInput('buildGradlePath');
             if (!fs.existsSync(buildGradlePath)) {
-                task.error(`The file path does not exist: ${buildGradlePath}`);
+                task.error(`The file path for the build.gradle does not exist or is not found: ${buildGradlePath}`);
                 process.exit(1);
             }
             task.debug(`Running task with ${buildGradlePath}`);

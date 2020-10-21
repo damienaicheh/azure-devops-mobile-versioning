@@ -6,7 +6,7 @@ async function run() {
         var androidManifestPath = task.getPathInput('androidManifestPath');
 
         if (!fs.existsSync(androidManifestPath)) {
-            task.error(`The file path does not exist:: ${androidManifestPath}`);
+            task.error(`The file path for the AndroidManifest.xml does not exist or is not found: ${androidManifestPath}`);
             process.exit(1);
         }
 
