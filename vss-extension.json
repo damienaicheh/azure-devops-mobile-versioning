@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "mobile-versioning-task",
     "name": "Mobile Versioning",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "publisher": "damienaicheh",
     "public": true,
     "targets": [

@@ -26,6 +26,8 @@ You will then have access to 4 variables for the following tasks:
 - MINOR
 - PATCH
 - PRE_RELEASE
+- NUMBER_OF_COMMITS
+- NUMBER_OF_COMMITS_SINCE_TAG
 
 Then depending on your need add one of these following tasks:
 

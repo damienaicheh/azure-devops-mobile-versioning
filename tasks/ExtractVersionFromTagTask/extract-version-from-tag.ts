@@ -6,6 +6,7 @@ const MINOR: string = 'MINOR';
 const PATCH: string = 'PATCH';
 const PRE_RELEASE: string = 'PRE_RELEASE';
 const NUMBER_OF_COMMITS: string = 'NUMBER_OF_COMMITS';
+const NUMBER_OF_COMMITS_SINCE_TAG: string = 'NUMBER_OF_COMMITS_SINCE_TAG';
 
 async function run() {
     try {
@@ -36,21 +37,22 @@ async function run() {
 
         task.debug(`Tag retreived: ${tagResult.stdout}`);
 
-        var tag = tagResult.stdout;
+        var originalTag = tagResult.stdout;
+        if (originalTag.includes('\n')) {
+            originalTag = originalTag.split('\n')[0];
+        }
+
+        var tag = originalTag;
 
         if (tag.includes('v')) {
             var tagSplitted = tag.split('v');
             tag = tagSplitted[1];
         }
 
-        if (tag.includes('\n')) {
-            tag = tag.split('\n')[0];
-        }
-
         var versionsIndicator = tag.split('.');
         task.debug(versionsIndicator.toString());
 
-        if (versionsIndicator[2].includes('-')) {
+        if (versionsIndicator.length > 2 && versionsIndicator[2].includes('-')) {
             const preSplit = versionsIndicator[2].split('-');
             // Replacing PATCH split with pre release tag split
             versionsIndicator[2] = preSplit[0];
@@ -72,15 +74,25 @@ async function run() {
 
         var numberOfCommits = result.stdout.split('\n');
 
-        setVariableOrDefault(NUMBER_OF_COMMITS, numberOfCommits[0])
+        setVariableOrDefault(NUMBER_OF_COMMITS, numberOfCommits[0]);
+
+        var argsSinceTag = ["rev-list", `${originalTag}..HEAD`, "--count"];
+
+        let commitsSinceTagResult = task.execSync(git, argsSinceTag);
+
+        var numberOfCommitsSinceTag = commitsSinceTagResult.stdout.split('\n');
+
+        setVariableOrDefault(NUMBER_OF_COMMITS_SINCE_TAG, numberOfCommitsSinceTag[0]);
 
         task.debug(`Major:` + task.getVariable(MAJOR));
         task.debug(`Minor:` + task.getVariable(MINOR));
         task.debug(`Patch:` + task.getVariable(PATCH));
+
         if (task.getVariable(PRE_RELEASE)) {
             task.debug(`Pre Release:` + task.getVariable(PRE_RELEASE));
         }
         task.debug(`Number of commits:` + task.getVariable(NUMBER_OF_COMMITS));
+        task.debug(`Number of commits since tag:` + task.getVariable(NUMBER_OF_COMMITS_SINCE_TAG));
 
         task.setResult(task.TaskResult.Succeeded, "Extract version from tag succeeded");
     } catch (err) {
