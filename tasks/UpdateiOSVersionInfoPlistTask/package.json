@@ -1,17 +1,21 @@
 {
   "name": "updateiosversioninfoplisttask",
   "version": "1.0.0",
-  "description": "",
+  "description": "Update iOS version Info.plist",
   "main": "update-ios-version-info-plist.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:damienaicheh/azure-devops-mobile-versioning.git"
+  },
+  "author": "Damien AICHEH",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^2.9.3",
+    "azure-pipelines-task-lib": "^3.1.10",
     "fs": "0.0.1-security",
-    "plist": "^3.0.1"
+    "plist": "^3.0.4"
   },
   "devDependencies": {
     "@types/node": "^12.12.14",

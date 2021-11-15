@@ -1,5 +1,9 @@
 # Change Log
 
+### 1.1.0
+
+Update all tasks to Node 10.
+
 ### 1.0.6
 
 Add new variable to get the number of commits since a specific tag.

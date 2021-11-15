@@ -3,7 +3,7 @@
     "id": "238f39b4-d9fc-4fed-be87-1e48e5fb2b9a",
     "name": "UpdateiOSVersionInfoPlist",
     "friendlyName": "Update iOS version Info.plist",
-    "description": "Learn more about this task by looking to the [Github repository]()",
+    "description": "Update iOS version Info.plist",
     "helpMarkDown": "",
     "category": "Build",
     "visibility": [
@@ -13,8 +13,8 @@
     "author": "Damien Aicheh",
     "version": {
         "Major": 1,
-        "Minor": 0,
-        "Patch": 1
+        "Minor": 1,
+        "Patch": 0
     },
     "inputs": [
         {
@@ -43,7 +43,7 @@
         }
     ],
     "execution": {
-        "Node": {
+        "Node10": {
             "target": "update-ios-version-info-plist.js"
         }
     }
