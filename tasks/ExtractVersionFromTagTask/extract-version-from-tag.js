@@ -43,7 +43,7 @@ function run() {
             if (originalTag.includes('\n')) {
                 originalTag = originalTag.split('\n')[0];
             }
-            var tag = originalTag;
+            var tag = originalTag.toLowerCase();
             if (tag.includes('v')) {
                 var tagSplitted = tag.split('v');
                 tag = tagSplitted[1];
