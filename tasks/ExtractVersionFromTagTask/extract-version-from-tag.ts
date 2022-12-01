@@ -11,6 +11,7 @@ const NUMBER_OF_COMMITS_SINCE_TAG: string = 'NUMBER_OF_COMMITS_SINCE_TAG';
 async function run() {
     try {
         var projectFolderPath = task.getPathInput('projectFolderPath');
+        var hasMultipleTags = task.getPathInput('hasMultipleTags');
 
         if (!fs.existsSync(projectFolderPath)) {
             task.error(`Source directory does not exist: ${projectFolderPath}`);
@@ -22,6 +23,8 @@ async function run() {
 
         let git: string = task.which('git', true);
         var args = ["describe", "--tags", "--abbrev=0"];
+        if (hasMultipleTags === true)
+            args = ["tag", "-l", "'v*'"];
 
         let tagResult = task.execSync(git, args);
 
