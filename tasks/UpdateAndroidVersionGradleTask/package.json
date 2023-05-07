@@ -13,7 +13,7 @@
   "author": "Damien AICHEH",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^3.1.20"
+    "azure-pipelines-task-lib": "^3.4.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.26",
