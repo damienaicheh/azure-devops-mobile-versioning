@@ -17,7 +17,7 @@
     "fs": "0.0.1-security"
   },
   "devDependencies": {
-    "@types/node": "^16.11.26",
+    "@types/node": "^20.1.5",
     "@types/q": "^1.5.5"
   }
 }
