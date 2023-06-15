@@ -24,6 +24,14 @@
             "defaultValue": "$(Build.SourcesDirectory)",
             "required": true,
             "helpMarkDown": "The project folder path where the .git folder is. Default is: $(Build.SourcesDirectory)."
+        },
+        {
+            "name": "tagPrefixMatch",
+            "type": "string",
+            "label": "Prefix match tag",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The prefix match for search tag. Default is empty text."
         }
     ],
     "execution": {

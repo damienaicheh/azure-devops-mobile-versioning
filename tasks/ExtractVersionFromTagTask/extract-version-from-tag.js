@@ -21,6 +21,8 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             var projectFolderPath = task.getPathInput('projectFolderPath');
+            var tagPrefixMatch = task.getPathInput('tagPrefixMatch');
+            var splitPrefix = 'v';
             if (!fs.existsSync(projectFolderPath)) {
                 task.error(`Source directory does not exist: ${projectFolderPath}`);
                 process.exit(1);
@@ -29,6 +31,12 @@ function run() {
             task.cd(projectFolderPath);
             let git = task.which('git', true);
             var args = ["describe", "--tags", "--abbrev=0"];
+            // Add prefix match if need 
+            if (tagPrefixMatch !== undefined && tagPrefixMatch.trim().length !== 0) {
+                task.debug(`Add match ${tagPrefixMatch}`);
+                args.push("--match=" + tagPrefixMatch + "*");
+                splitPrefix = tagPrefixMatch;
+            }
             let tagResult = task.execSync(git, args);
             if (tagResult.code !== 0) {
                 if (tagResult.error != null) {
@@ -44,8 +52,8 @@ function run() {
                 originalTag = originalTag.split('\n')[0];
             }
             var tag = originalTag.toLowerCase();
-            if (tag.includes('v')) {
-                var tagSplitted = tag.split('v');
+            if (tag.startsWith(tagPrefixMatch)) {
+                var tagSplitted = tag.split(tagPrefixMatch);
                 tag = tagSplitted[1];
             }
             var versionsIndicator = tag.split('.');

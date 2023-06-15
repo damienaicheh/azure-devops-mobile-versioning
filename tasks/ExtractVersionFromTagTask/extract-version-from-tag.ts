@@ -11,6 +11,8 @@ const NUMBER_OF_COMMITS_SINCE_TAG: string = 'NUMBER_OF_COMMITS_SINCE_TAG';
 async function run() {
     try {
         var projectFolderPath = task.getPathInput('projectFolderPath');
+        var tagPrefixMatch = task.getPathInput('tagPrefixMatch');
+        var splitPrefix = 'v';
 
         if (!fs.existsSync(projectFolderPath)) {
             task.error(`Source directory does not exist: ${projectFolderPath}`);
@@ -22,6 +24,13 @@ async function run() {
 
         let git: string = task.which('git', true);
         var args = ["describe", "--tags", "--abbrev=0"];
+
+        // Add prefix match if need 
+        if (tagPrefixMatch !== undefined && tagPrefixMatch.trim().length !== 0) {
+            task.debug(`Add match ${tagPrefixMatch}`);
+            args.push("--match=" + tagPrefixMatch + "*");
+            splitPrefix = tagPrefixMatch;
+        }
 
         let tagResult = task.execSync(git, args);
 
@@ -44,8 +53,8 @@ async function run() {
 
         var tag = originalTag.toLowerCase();
 
-        if (tag.includes('v')) {
-            var tagSplitted = tag.split('v');
+        if (tag.startsWith(tagPrefixMatch)) {
+            var tagSplitted = tag.split(tagPrefixMatch);
             tag = tagSplitted[1];
         }
 
