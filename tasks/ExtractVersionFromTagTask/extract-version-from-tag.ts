@@ -29,7 +29,7 @@ async function run() {
         if (tagPrefixMatch !== undefined && tagPrefixMatch.trim().length !== 0) {
             task.debug(`Add match ${tagPrefixMatch}`);
             args.push("--match=" + tagPrefixMatch + "*");
-            splitPrefix = tagPrefixMatch;
+            splitPrefix = tagPrefixMatch.toLowerCase();
         }
 
         let tagResult = task.execSync(git, args);
@@ -53,8 +53,8 @@ async function run() {
 
         var tag = originalTag.toLowerCase();
 
-        if (tag.startsWith(tagPrefixMatch)) {
-            var tagSplitted = tag.split(tagPrefixMatch);
+        if (tag.startsWith(splitPrefix)) {
+            var tagSplitted = tag.split(splitPrefix);
             tag = tagSplitted[1];
         }
 
