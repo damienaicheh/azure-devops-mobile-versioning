@@ -1,5 +1,16 @@
 # Change Log
 
+### 1.3.0
+
+Update packages
+ExtractVersionFromTagTask:
+- Add new property `tagPrefixMatch` to extract tags
+- Use startWith instead of includes to define the prefix
+
+### 1.2.0
+
+Manage v or V prefix. Update packages
+
 ### 1.1.0
 
 Update all tasks to Node 10.

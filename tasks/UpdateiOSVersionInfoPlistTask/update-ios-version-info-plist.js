@@ -33,7 +33,7 @@ function run() {
                 task.error(`Bundle Version has no value: ${bundleVersion}`);
                 process.exit(1);
             }
-            var fileContent = fs.readFileSync(infoPlistPath, 'UTF8');
+            var fileContent = fs.readFileSync(infoPlistPath, { encoding: 'utf-8' });
             task.debug(JSON.stringify(fileContent));
             var obj = plist.parse(fileContent);
             obj['CFBundleShortVersionString'] = bundleShortVersionString;

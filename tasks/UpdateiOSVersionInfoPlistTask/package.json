@@ -13,12 +13,12 @@
   "author": "Damien AICHEH",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^3.2.0",
+    "azure-pipelines-task-lib": "^4.4.0",
     "fs": "0.0.1-security",
-    "plist": "^3.0.4"
+    "plist": "^3.0.6"
   },
   "devDependencies": {
-    "@types/node": "^16.11.26",
+    "@types/node": "^20.3.1",
     "@types/q": "^1.5.5"
   }
 }
