@@ -1,5 +1,6 @@
 import task = require('azure-pipelines-task-lib/task');
 import fs = require('fs');
+import minimatch = require('minimatch');
 
 const MAJOR: string = 'MAJOR';
 const MINOR: string = 'MINOR';
@@ -25,7 +26,7 @@ async function run() {
         let git: string = task.which('git', true);
         var args = ["describe", "--tags", "--abbrev=0"];
 
-        // Add prefix match if need 
+        // Add prefix match if need
         if (tagPrefixMatch !== undefined && tagPrefixMatch.trim().length !== 0) {
             task.debug(`Add match ${tagPrefixMatch}`);
             args.push(`--match=${tagPrefixMatch}*`);
@@ -53,8 +54,27 @@ async function run() {
 
         var tag = originalTag.toLowerCase();
 
-        if (tag.startsWith(splitPrefix)) {
-            var tagSplitted = tag.split(splitPrefix);
+        var prefixCandidates = Array.from(
+            {length: tag.length},
+            (_, index) => tag.substring(0, index+1)
+        );
+        task.debug(`Prefix candidates: ${prefixCandidates.toString()}`);
+
+        var globSplitPrefix = minimatch.match(
+            prefixCandidates,
+            splitPrefix,
+            {
+                nobrace:true,
+                noglobstar:true,
+                noext: true,
+                nocomment: true,
+            }
+        ).at(-1);
+
+        task.debug(`actual tag split match: ${globSplitPrefix}`);
+
+        if (tag.startsWith(globSplitPrefix)) {
+            var tagSplitted = tag.split(globSplitPrefix);
             tag = tagSplitted[1];
         }
 
