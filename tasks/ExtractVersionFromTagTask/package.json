@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "azure-pipelines-task-lib": "^4.4.0",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "minimatch": "^9.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
