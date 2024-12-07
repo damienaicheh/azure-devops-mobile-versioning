@@ -13,7 +13,7 @@
     "author": "Damien Aicheh",
     "version": {
         "Major": 1,
-        "Minor": 6,
+        "Minor": 7,
         "Patch": 0
     },
     "inputs": [
@@ -35,7 +35,7 @@
         }
     ],
     "execution": {
-        "Node": {
+        "Node20_1": {
             "target": "extract-version-from-tag.js"
         }
     }
